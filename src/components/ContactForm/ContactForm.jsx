@@ -58,7 +58,7 @@ export const ContactForm = () => {
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               required
               onChange={inputChange}
-              value={number}
+              value={phone}
             />
             <button className={css.formButton} type="submit">Add contact
             </button>
