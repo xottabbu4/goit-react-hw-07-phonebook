@@ -21,9 +21,10 @@ export const ContactForm = () => {
 
     const handleSubmit = event => {
       event.preventDefault();
+
       const contact = {
-      name,
-      phone
+        name,
+        phone,
     };
     const isAtList = contacts.find(contact => contact.name === name);
     if (isAtList) {
@@ -47,7 +48,6 @@ export const ContactForm = () => {
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               required
               onChange={inputChange}
-              value={name}
             />
             <p className={css.formText}>Number</p>
             <input
@@ -58,7 +58,6 @@ export const ContactForm = () => {
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               required
               onChange={inputChange}
-              value={phone}
             />
             <button className={css.formButton} type="submit">Add contact
             </button>
