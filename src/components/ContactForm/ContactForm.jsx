@@ -1,21 +1,21 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { nanoid } from 'nanoid';
-import { addContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/operations';
+import { selectContacts } from 'redux/selectors';
 import css from './ContactForm.module.css';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.items);
+  const contacts = useSelector(selectContacts);
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
 
   const inputChange = event => {
     if (event.target.name === 'name') {
       setName(event.target.value);
     }
-    if (event.target.name === 'number') {
-      setNumber(event.target.value);
+    if (event.target.name === 'phone') {
+      setPhone(event.target.value);
     }
     }
 
@@ -23,8 +23,7 @@ export const ContactForm = () => {
       event.preventDefault();
       const contact = {
       name,
-      number,
-      id: nanoid(),
+      phone
     };
     const isAtList = contacts.find(contact => contact.name === name);
     if (isAtList) {
@@ -54,7 +53,7 @@ export const ContactForm = () => {
             <input
               className={css.formInput}
               type="tel"
-              name="number"
+              name="phone"
               pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               required
